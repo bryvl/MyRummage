@@ -6,12 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Landing Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../rummage/assets/css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Baloo+Chettan|Fjalla+One|Lobster" rel="stylesheet">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
+    <!-- Font Text from FontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
     <script>
         var config = {
             apiKey: "AIzaSyAtrv_EENVJvgdsyfN7pmVzMnp2-n-Q2sw",
@@ -23,105 +27,88 @@
         };
         firebase.initializeApp(config);
     </script>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 </head>
-<main>
 <body>
-    <main>
-        <nav>
-            <div class="nav-wrapper">
-                <ul id="nav-mobile">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="Favorites.html">Favorites</a></li>
-                    <li><a href="Pantry.html">Pantry</a></li>
-                    <li><a href="featured.html">Featured</a></li>
+    <!-- Modal for Logging In -->
+    <div id="regModal" class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Sign in to Rummage</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                <i class="fas fa-at prefix grey-text"></i>
+                <label data-error="wrong" data-success="right" for="defaultForm-email">Your Username</label>
+                <input type="email" id="defaultForm-email" class="form-control validate">
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-default">Login</button>
+            </div>
+            </div>
+        </div>
+    </div> 
+    <!-- End Modal -->
+
+    <div id="pageContainer" class="container">
+        <nav id="navHead" class="navbar navbar-expand-lg static-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img style="height: 48px; width: 48px" src="./assets/images/two-rum-bottles-in-a-box.png" alt="two rum bottles in a box logo"><h2>Rummage</h2></a>
+                <ul id="nav-mobile" class="list-inline">
+                    <li class="list-inline-item"><a href="index.html">Home</a></li>
+                    <li class="list-inline-item"><a href="favorites.html">Favorites</a></li>
+                    <li class="list-inline-item"><a href="pantry.html">Pantry</a></li>
+                    <li class="list-inline-item"><a href="featured.html">Featured</a></li>
                 </ul>
             </div>
         </nav>
 
 
         <div class="container">
-            <p>
-                <h1>Welcome to Rummage</h1>
-            </p>
-            <br>
-            <div class="col s12 m5">
-                <img id="logo" src="./assets/images/RUMMAGE.jpeg" alt="logo">
-            </div>
-            <br>
-            <div id="ing-header">ADD INGREDIENTS!:</div>
-            <div class="search-bar">
-                <input id="ingredients-input" type="text" style="text-align:center;">
-                <button id="add-ingredients" class="btn">Add Ingredients</button>
-                <button id="search-button" class="btn">Search</button>
-            </div>
-            <div id="ingredients"></div>
-            <div id="results"></div>
-        </main>
-        <footer class="page-footer">
             <div class="row">
-                <ul>
-                    <li><a class="grey-text text-lighten-3" href="faq.html">FAQ</a></li>
-                    <li><a class="grey-text text-lighten-3" href="contact.html">Contact</a></li>
-                </ul>
+                <div class="col-9">
+                    <h2>Featured</h2>
+                    <img src="./assets/images/rum-cocktail-glass.jpg" style="width: 450px">
+                    <div id="call-to-action">
+                        <h4>Add Ingredients:</h4>
+                        <div class="search-bar">
+                            <input id="ingredients-input" type="text" style="text-align:center;">
+                            <button id="add-ingredients" class="btn">+</button>
+                            <button id="search-button" class="btn"><img src="./assets/images/zoom-tool (1).png"></button>
+                        </div>
+                    </div>
+                    <div id="ingredients"></div>
+                    <div id="results"></div>
+                </div>
+                <div id="pantry" class="col">
+                    <div class="row">
+                        <div id="pantry-header"> 
+                            <h1>Pantry</h1>    
+                        </div>
+                            <div id="action-store">
+                                <p>Already have an ingredient? Enter it here!</p>
+                                <input id="pantry-input" type="text" style="text-align:center;">
+                                <button id="pantry-button" class="btn"><img src="./assets/images/cabinet.png"></button>
+                            </div>
+                        <div id="pantry-storage" class="container" ondrop="drop_handler(event);" ondragover="dragover_handler(event);" ondragend="dragend_handler(event);">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </footer>
     </div>
-  
-    <div style="text-align:center;">
-        <button id="search-button" class="btn drinkCard">Search</button>
-    </div>
-
-    <!-- #pantry-div is to display pantry ingredients by the search
-
-<<<<<<< HEAD
-    <div style="text-align:center;">
-        <button id="search-button" class="btn drinkCard">Search</button>
-    </div>
-
-    <!-- #pantry-div is to display pantry ingredients by the search
-
-
-    Doesn't necessarily have to display as a div. Could be something else.
-    <!-- <div id="pantry-div"></div> -->
-    <!-- #ingredients is where added ingredients for search will display and be removed from-->
-    <div id="ingredients"></div>
-    <!-- #results is where search results ware displaying, but we'll have to change this -->
-    <!-- to work with Carousel JS -->
-    <div id="results"></div>
-</main>
-    <footer class="page-footer">
-        <div class="row">
-            <ul>
-            </ul>
-        </div>
-        </div>
-    </footer>
-=======
->>>>>>> fe8dede5704cce0e692a18636f959ee230f3b719
-
-    Doesn't necessarily have to display as a div. Could be something else.
-    <!-- <div id="pantry-div"></div> -->
-    <!-- #ingredients is where added ingredients for search will display and be removed from-->
-    <div id="ingredients"></div>
-    <!-- #results is where search results ware displaying, but we'll have to change this -->
-    <!-- to work with Carousel JS -->
-    <div id="results"></div>
-</main>
-    <footer class="page-footer">
-        <div class="row">
-            <ul>
-            </ul>
-        </div>
-        </div>
-    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(window).on('load',function(){
+            $('#regModal').modal('show');
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="./assets/js/search.js"></script>
 <script src="./assets/js/favorites.js"></script>
 <script src="./assets/js/pantry.js"></script>

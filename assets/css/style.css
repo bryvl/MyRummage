@@ -1,130 +1,227 @@
 body {
-    font-family: 'Fjalla One', sans-serif;
-    background-color: #765285;
-    color: #feb47b;
-    text-align: center;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #cabec5;
+    color: #693852;
+    padding: 0 15px;
 }
-
-main {
-    flex: 1 0 auto;
+.container {
+    max-width: 100%;
 }
-
-ul {
-    list-style-type: inline;
-    margin: 0;
+#pageContainer {
+    background-color: white;
+    border-left: 1px solid #693852;
+    border-right: 1px solid #693852;
     padding: 0;
-    overflow: hidden;
-    background-color: #f5ab99;
 }
+/* Top Content */
 
-li {
-    float: right;
-    text-decoration: none;
-    list-style: none;
-}
-
-li a {
-    display: block;
-    color: #351c4d;
-    text-align: center;
-    padding: 14px 16px;
-}
-
-.center {
-    display: block;
-    /* margin-left: auto;
-    margin-right: auto; */
-    width: 50%;
-}
-
-
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #f5ab99;
+.modal .modal-dialog .modal-content {
+    background-color: #693852;
     color: white;
-    text-align: center;
 }
 
-.p {
-    color: #feb47b;
+/* .modal-backdrop {
+    background-color: #693852;
+} */
+
+#navHead {
+    background-color: #C84D50;
+    color: white;
+}
+nav div a {
+    color: white;
+}
+/* Call To Action (Input, Search, Add to Pantry) */
+#call-to-action {
+    margin: 20px 0;
+    color: #C84D50;
 }
 
-.card {
-    background-color: #765258;
-}
-
-
-
-
-img {
-    width: 150px;
-    height: 100%;
-}
-
-#logo {
-    width: 30%;
-    height: 200px;
-}
-
-
-/* Search on Landing Page */
 #ingredients-input {
     float: left;
-    background: white;
-    width: 50%;
+    width: 496px;
+    margin-bottom: 20px;
+    padding: 0;
+    color: #F5AB99;
+    line-height: 46px;
+    font-size: 1.75rem;
+    outline-style: none;
 }
+
+.btn {
+    float: left;
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 0px;
+    outline-style: none;
+    font-size: 2rem;
+}
+
 #add-ingredients {
-    float: left;
-    height: 46px;
+    background-color: #FEB47B;
+    color: white;
 }
+
 #search-button {
-    width: 100px;
-    height: 46px;
-    float: left;
+    
+    background-color: #FF7E5F;
+    color: white;
+    
 }
-#ingredients{
+
+
+#ingredients {
     clear: both;
 }
 .ingredient {
-    display: inline;
-    margin: 10px;
-    padding: 5px;
-    border: 1px solid #f5ab99;
-    border-radius: 2px;
+    display: inline-block;
+    height: 40px;
+    min-width: 75px;
+    width: auto;
+    margin: 10px 10px;
+    padding: 7px;
+    border: 1px solid #FF7E5F;
+    border-radius: 5px;
+    color: #FF7E5F;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    text-align: center;
+}
+.remove {
+    color: white;
+    font-size: .5rem;
 }
 
-/* Results on Landing Page */
 #results {
-    margin-top: 15px;
+    display: block;
+    clear: both;
 }
+
+/* Drink Card Styles */
 .drinkCard {
     display: inline-block;
-    width: 200px;
-    min-height: 300px;
+    min-height: 200px;
     height: auto;
-    margin: 25px;
-    background-color: #f5ab99;
-    color: white;
-    border: 2px solid #f5ab99;
-    border-radius: 3px;
+    width: 100%;
+    margin: 10px;
+    background-color: white;
+    border: 1px solid rgb(255, 221, 212);
+    border-radius: 5px;
 }
 .drinkName {
-    font-size: 1.5rem;
-    background-color: #cdc;
+    height: 45px;
+    background-color: #FEB47B;
     color: white;
-
+    border-bottom: 1px solid rgb(212, 135, 75);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 1.25rem;
+    text-align: center;
 }
 .imgDrink {
-    width: 100%;
+    float: left;
+    height: 200px;
+    width: 200px;
+}
+.recipe {
+    float: left;
+}
+.drinkIngredients {
+    float: left;
+}
+.drinkIngredients span {
+    overflow-wrap: break-word;
 }
 
+.favorite {
+    float: right;
+    width: 10%;
+    height: auto;
+    color: rgb(226, 119, 93);
+    font-size: 2.5rem;
+    text-align: center;
+}
 
+/* Pantry Styles */
+#pantry {
+    border-left: 2px solid #693852;
+    border-right: 2px solid #693852;
+}
+#pantry-header {
+    width: 100%;
+    text-align: center;
+    background-color: #765265;
+    color: white;
+}
+#action-store {
+    padding: 10px 0;
+    text-align: center;
+}
+#pantry-input {
+    float: left;
+    width: 85%;
+    margin-bottom: 20px;
+    padding: 0;
+    color: #9b7388;
+    line-height: 46px;
+    font-size: 1.75rem;
+    outline-style: none;
+}
+#pantry-button {
+    background-color: #9b7388;
+    color: white;
+    width: 15%;
+}
+.pantryIngredient {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    background-color: white;
+    color: #9b7388;
+    border-bottom: 1px solid #bbb;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+#pantry-storage {
+    height: 750px;
+    border-top: #765265 1px solid;
+    border-bottom: #765265 1px solid;
+    margin: 0;
+    padding: 0;
+}
+
+/* Psuedo Classes */
+
+#ingredients-input:focus {
+    border: 2px solid #F05D39;
+}
+.ingredient:hover {
+    background-color: #FF7E5F;
+    color: white;
+}
+
+#add-ingredients:hover {
+    background-color: rgb(247, 158, 90);
+    transition-duration: .15s;
+}
+#pantry-button:hover {
+    background-color: #693852;
+    transition-duration: .15s;
+}
+.pantryIngredient:hover {
+    background-color: #9b7388;
+    color: white; 
+}
+#search-button:hover {
+    background-color: rgb(240, 93, 57);
+    transition-duration: .15s;
+}
+
+.favorite:hover {
+    color: #765265;
+    transition-duration: .25s;
+}
 /* ... */
 #user-ingredient {
     background: white;

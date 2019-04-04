@@ -13,66 +13,17 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<!-- 
-    <script>
-        // Initialize Firebase
-        var config = {
-          apiKey: "AIzaSyAtrv_EENVJvgdsyfN7pmVzMnp2-n-Q2sw",
-          authDomain: "rummage-base.firebaseapp.com",
-          databaseURL: "https://rummage-base.firebaseio.com",
-          projectId: "rummage-base",
-          storageBucket: "rummage-base.appspot.com",
-          messagingSenderId: "529528576551"
-        };
-        firebase.initializeApp(config);
-      </script> -->
 </head>
 <body>
-<main>
-    <nav>
-        <div class="nav-wrapper">
-          <ul id="nav-mobile">
-            <li><a href="index.html">Home</a></li>
-
-            <li><a href="about.html">About</a></li>
-            <li><a href="Favorites.html">Favorites</a></li>
-            <li><a href="Pantry.html">Pantry</a></li>
-            <li><a href="featured.html">Featured</a></li>
-          </ul>
-        </div>
-      </nav>
-    
-
       <div id="add-to-pantry">
         <span>Add To Your Pantry Below! </span>
-        <div>
-          <input id="user-ingredient" type="text" style="text-align:center;">
+        <div id="add-user">
+          <span>Pick a username: </span>
+          <input id="sign-up" type="text">
+          <button id="sign-up-btn" class="btn">+</button>
       </div>
-       
-        <!-- <input id="user-ingredient" type="text" class="pantrysearch"></div> -->
-        <!-- <button id="store-btn" class="btn">+</button> -->
-        <button id="store-btn" class="btn waves-effect waves-light" type="submit" name="action"> submit</i></button>
-        <!-- <a class="waves-effect waves-light btn" id="store-btn">button</a> -->
-    </div>
-  </div>
-    <div class="pantry"></div>
-
-
-
-
-
-
-      </div>
-      </main>
-      <footer class="page-footer">
-            <div class="row">
-                <ul>
-                </ul>
-              </div>
-            </div>
-        </footer>
+      <div class="pantry"></div>
 </body>
-<!-- <script src="assets/js/search.js"></script> -->
 <script src="./assets/js/pantry.js"></script>
 
 </html>

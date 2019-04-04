@@ -1,19 +1,37 @@
-//---------------------------------------- Initialize Firebase ---------------------------------------------------------
-// var config = {
-//     apiKey: "AIzaSyAtrv_EENVJvgdsyfN7pmVzMnp2-n-Q2sw",
-//     authDomain: "rummage-base.firebaseapp.com",
-//     databaseURL: "https://rummage-base.firebaseio.com",
-//     projectId: "rummage-base",
-//     storageBucket: "rummage-base.appspot.com",
-//     messagingSenderId: "529528576551"
-// };
-// firebase.initializeApp(config);
-
 //---------------------------------------- Global Variables -----------------------------------------------------------
 var database = firebase.database();
 var ingredients = [];
+var pantry = [];
 var counter = 0;
 var apiKey = '3587444';
+
+// --------------------------------------- Global Functions ---------------------------------------
+
+function dragstart_handler(ev) {
+    console.log("dragStart");
+    // Add the target element's id to the data transfer object
+    ev.dataTransfer.setData("text/plain", ev.target.id);
+    ev.effectAllowed = "copy";
+}
+
+function dragover_handler(ev) {
+    // Set the dropEffect to move
+    ev.currentTarget.style.background = "rgb(255, 221, 212)";
+    ev.dataTransfer.dropEffect = "copy";
+    ev.preventDefault();
+}
+function drop_handler(ev) {
+    ev.preventDefault();
+    // Get the id of the target and add the moved element to the target's DOM
+    var data = ev.dataTransfer.getData("text/plain");
+    ev.target.appendChild(document.getElementById(data));
+    ev.currentTarget.style.background = "white";
+}
+function dragend_handler(ev) {
+    console.log("dragEnd");
+    // Remove all of the drag data
+    ev.dataTransfer.clearData();
+}
 
 //---------------------------------------- On Click Functions ---------------------------------------------------------
 $('#add-ingredients').on('click', function() {
@@ -23,7 +41,7 @@ $('#add-ingredients').on('click', function() {
     ingredients.push(ingredient);
     console.log(ingredients);
 
-    var ingredientDiv = $("<div id='" + ingredients[counter] + "' class='ingredient'>" + ingredients[counter] + "<span class='remove'> x</span>" + "</div>");
+    var ingredientDiv = $("<div id='" + ingredients[counter] + "' class='ingredient'  draggable='true' ondragstart='dragstart_handler(event);' ondragend='dragend_handler(event);'>" + ingredients[counter] + "<span class='remove'> x</span>" + "</div>");
 
     $('#ingredients').append(ingredientDiv);
 
@@ -35,11 +53,10 @@ $('#add-ingredients').on('click', function() {
 })
 
 $('#search-button').on('click', function() {
-    console.log('button working');
-    apiKey = '3587444';
+    var apiKey = '3587444';
 
-    var queryURL = 'https://www.thecocktaildb.com/api/json/v2/' + apiKey + '/filter.php?i=';
-
+    var queryURL = 'https://www.thecocktaildb.com/api/json/v2/' + apiKey + '/filter.php?i=' + ingredients;
+    console.log(queryURL);
     $.ajax({
         url: queryURL,
         method: 'GET'
@@ -87,7 +104,7 @@ $(document).on('click', '.drinkCard', function() {
     if ($(this).attr('data-isFave') === 'false') {
         $(this).attr('data-isFave', 'true');
         $(this).find('.fa-heart').css('color', '#765265');
-        $(this).find('.drinkName').css('color', '#351C4D');
+        // $(this).find('.drinkName').css('color', '#351C4D');
         $(this).css('border', '3px solid #351C4D');
     } else {
         $(this).attr('data-isFave', 'false');
@@ -108,13 +125,13 @@ $(document).on('click', '.drinkCard', function() {
         recipe = response.drinks[0].strInstructions;
         console.log(recipe);
         var count = 1;
+        var drinkIngDiv = $("<div class='drinkIngredients'> <strong>Ingredients: </strong>");
         for(var key in searchedDrink) {
              
             if(searchedDrink[key] !== '' && searchedDrink[key] !== null && key.indexOf('strIngredient') !== -1) {
                    
                 console.log(count + '= ' + key + ': ' + searchedDrink[key]);
 
-                var drinkIngDiv = $("<div class='drinkIngredients'>");
                 var itemDiv = $("<span class='drinkIng'>" + searchedDrink[key] + ", " + "</span>");
                 drinkIngDiv.append(itemDiv);
                 self.append(drinkIngDiv);
@@ -124,7 +141,7 @@ $(document).on('click', '.drinkCard', function() {
             } 
         }
 
-        self.append("<div class='recipe'>Instructions: " + recipe + "</div>");
+        self.append("<div class='recipe'><strong>Instructions: </strong>" + recipe + "</div>");
     });
 
 })
@@ -141,24 +158,30 @@ $(document).on('click', '.ingredient', function() {
 
     $(this).remove();
     
-})
-    $(this).remove();  
-})
+});
+
+$(document).on('click', '#pantry-button', function() {
+    var ingredient = $('#pantry-input').val().trim();
+    pantry.push(ingredient);
+    console.log(pantry);
+    var pantryIng = $("<div class='pantryIngredient'>" + ingredient + "</div>");
+    $('#pantry-storage').append(pantryIng);
+    
 });
 
 
 // -----------------------------------------ADDED FAVORITE FUNCTION------------------------------------------------------
-var favArray = [];
+// var favArray = [];
 
-$(document.body).on('click', '.fa-heart', function(){
-    $('.fas').parent().push(favArray);
-    console.log(this);
-    localStorage.setItem(favArray);
-    $('.fav-drink-section').append(localStorage.getItem(favArray));
-    // database.ref().push({
-    //     favArray: favArray
-    // });
-});
+// $(document.body).on('click', '.fa-heart', function(){
+//     $('.fas').parent().push(favArray);
+//     console.log(this);
+//     localStorage.setItem(favArray);
+//     $('.fav-drink-section').append(localStorage.getItem(favArray));
+//     database.ref().push({
+//         favArray: favArray
+//     });
+// });
 // database.ref().on("child_added", function(snapshot) {
 //     // storing the snapshot.val() in a variable for convenience
 //     var sv = snapshot.val();
